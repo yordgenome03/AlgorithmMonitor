@@ -52,9 +52,9 @@ struct SettingRow<Content: View>: View {
         }
     }
 }
-
-#Preview {
-    NavigationStack {
-        BubbleSortView()
-    }
-}
+//
+//#Preview {
+//    NavigationStack {
+//        BubbleSortView()
+//    }
+//}

@@ -44,9 +44,9 @@ struct FilledButton: View {
         }
     }
 }
-
-#Preview {
-    NavigationStack {
-        BubbleSortView()
-    }
-}
+//
+//#Preview {
+//    NavigationStack {
+//        BubbleSortView()
+//    }
+//}

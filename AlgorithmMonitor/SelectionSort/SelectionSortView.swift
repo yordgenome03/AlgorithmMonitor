@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct SelectionSortSettingsView: View {
     @StateObject private var viewModel: SelectionSortViewModel
     @Environment(\.dismiss) var dismiss

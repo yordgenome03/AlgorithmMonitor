@@ -104,6 +104,8 @@ extension BubbleSortView {
                             await viewModel.startSort()
                         }
                     }
+                    .disabled(viewModel.isStepping)
+                    .opacity(viewModel.isStepping ? 0.5 : 1)
                 }
                 
                 Spacer()
@@ -113,8 +115,8 @@ extension BubbleSortView {
                         await viewModel.stepForward()
                     }
                 }
-                .disabled(viewModel.isSorting)
-                .opacity(viewModel.isSorting ? 0.5 : 1)
+                .disabled((viewModel.isSorting || viewModel.isStepping))
+                .opacity((viewModel.isSorting || viewModel.isStepping) ? 0.5 : 1)
             }
             
             StrokedButton(title: "Reset", color: .mint) {

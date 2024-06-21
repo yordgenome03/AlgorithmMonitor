@@ -14,16 +14,17 @@
 		A1619C652C24C5A2006B51AC /* AlgorithmMonitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C642C24C5A2006B51AC /* AlgorithmMonitorTests.swift */; };
 		A1619C6F2C24C5A2006B51AC /* AlgorithmMonitorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C6E2C24C5A2006B51AC /* AlgorithmMonitorUITests.swift */; };
 		A1619C712C24C5A2006B51AC /* AlgorithmMonitorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C702C24C5A2006B51AC /* AlgorithmMonitorUITestsLaunchTests.swift */; };
-		A1619C7E2C24C656006B51AC /* Algorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C7D2C24C656006B51AC /* Algorithm.swift */; };
 		A1619C802C24C729006B51AC /* BubbleSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C7F2C24C729006B51AC /* BubbleSortView.swift */; };
 		A1619C822C24CB48006B51AC /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C812C24CB48006B51AC /* FlowLayout.swift */; };
-		A1619C852C25083D006B51AC /* BubbleSortViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C842C25083D006B51AC /* BubbleSortViewModel.swift */; };
 		A1619C882C252926006B51AC /* Rows.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C872C252926006B51AC /* Rows.swift */; };
 		A1619C8A2C252A8D006B51AC /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C892C252A8D006B51AC /* Buttons.swift */; };
 		A1619C8D2C253701006B51AC /* SelectionSortViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C8C2C253701006B51AC /* SelectionSortViewModel.swift */; };
 		A1619C8F2C25371A006B51AC /* SelectionSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C8E2C25371A006B51AC /* SelectionSortView.swift */; };
 		A1619C912C2538E4006B51AC /* BubbleSortSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C902C2538E4006B51AC /* BubbleSortSettingsView.swift */; };
 		A1619C932C25396E006B51AC /* SelectionSortSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C922C25396E006B51AC /* SelectionSortSettingsView.swift */; };
+		A1619C952C2567F0006B51AC /* BubbleSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C942C2567F0006B51AC /* BubbleSort.swift */; };
+		A1C10F332C261500004FE3F3 /* BubbleSortViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C10F322C261500004FE3F3 /* BubbleSortViewModel.swift */; };
+		A1C10F352C26182B004FE3F3 /* BubbleSortTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C10F342C26182B004FE3F3 /* BubbleSortTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,16 +55,17 @@
 		A1619C6A2C24C5A2006B51AC /* AlgorithmMonitorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlgorithmMonitorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1619C6E2C24C5A2006B51AC /* AlgorithmMonitorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgorithmMonitorUITests.swift; sourceTree = "<group>"; };
 		A1619C702C24C5A2006B51AC /* AlgorithmMonitorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgorithmMonitorUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		A1619C7D2C24C656006B51AC /* Algorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Algorithm.swift; sourceTree = "<group>"; };
 		A1619C7F2C24C729006B51AC /* BubbleSortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleSortView.swift; sourceTree = "<group>"; };
 		A1619C812C24CB48006B51AC /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
-		A1619C842C25083D006B51AC /* BubbleSortViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleSortViewModel.swift; sourceTree = "<group>"; };
 		A1619C872C252926006B51AC /* Rows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rows.swift; sourceTree = "<group>"; };
 		A1619C892C252A8D006B51AC /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		A1619C8C2C253701006B51AC /* SelectionSortViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionSortViewModel.swift; sourceTree = "<group>"; };
 		A1619C8E2C25371A006B51AC /* SelectionSortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionSortView.swift; sourceTree = "<group>"; };
 		A1619C902C2538E4006B51AC /* BubbleSortSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleSortSettingsView.swift; sourceTree = "<group>"; };
 		A1619C922C25396E006B51AC /* SelectionSortSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionSortSettingsView.swift; sourceTree = "<group>"; };
+		A1619C942C2567F0006B51AC /* BubbleSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleSort.swift; sourceTree = "<group>"; };
+		A1C10F322C261500004FE3F3 /* BubbleSortViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleSortViewModel.swift; sourceTree = "<group>"; };
+		A1C10F342C26182B004FE3F3 /* BubbleSortTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleSortTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +117,6 @@
 			isa = PBXGroup;
 			children = (
 				A1619C532C24C5A0006B51AC /* AlgorithmMonitorApp.swift */,
-				A1619C7D2C24C656006B51AC /* Algorithm.swift */,
 				A1619C552C24C5A0006B51AC /* ContentView.swift */,
 				A1619C8B2C2536F4006B51AC /* SelectionSort */,
 				A1619C832C250827006B51AC /* BubbleSort */,
@@ -138,6 +139,7 @@
 		A1619C632C24C5A2006B51AC /* AlgorithmMonitorTests */ = {
 			isa = PBXGroup;
 			children = (
+				A1C10F342C26182B004FE3F3 /* BubbleSortTests.swift */,
 				A1619C642C24C5A2006B51AC /* AlgorithmMonitorTests.swift */,
 			);
 			path = AlgorithmMonitorTests;
@@ -155,7 +157,8 @@
 		A1619C832C250827006B51AC /* BubbleSort */ = {
 			isa = PBXGroup;
 			children = (
-				A1619C842C25083D006B51AC /* BubbleSortViewModel.swift */,
+				A1619C942C2567F0006B51AC /* BubbleSort.swift */,
+				A1C10F322C261500004FE3F3 /* BubbleSortViewModel.swift */,
 				A1619C7F2C24C729006B51AC /* BubbleSortView.swift */,
 				A1619C902C2538E4006B51AC /* BubbleSortSettingsView.swift */,
 			);
@@ -312,16 +315,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1619C912C2538E4006B51AC /* BubbleSortSettingsView.swift in Sources */,
+				A1619C952C2567F0006B51AC /* BubbleSort.swift in Sources */,
 				A1619C562C24C5A0006B51AC /* ContentView.swift in Sources */,
 				A1619C822C24CB48006B51AC /* FlowLayout.swift in Sources */,
-				A1619C852C25083D006B51AC /* BubbleSortViewModel.swift in Sources */,
 				A1619C8F2C25371A006B51AC /* SelectionSortView.swift in Sources */,
-				A1619C7E2C24C656006B51AC /* Algorithm.swift in Sources */,
 				A1619C882C252926006B51AC /* Rows.swift in Sources */,
 				A1619C802C24C729006B51AC /* BubbleSortView.swift in Sources */,
 				A1619C542C24C5A0006B51AC /* AlgorithmMonitorApp.swift in Sources */,
 				A1619C8D2C253701006B51AC /* SelectionSortViewModel.swift in Sources */,
 				A1619C8A2C252A8D006B51AC /* Buttons.swift in Sources */,
+				A1C10F332C261500004FE3F3 /* BubbleSortViewModel.swift in Sources */,
 				A1619C932C25396E006B51AC /* SelectionSortSettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,6 +333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1C10F352C26182B004FE3F3 /* BubbleSortTests.swift in Sources */,
 				A1619C652C24C5A2006B51AC /* AlgorithmMonitorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
