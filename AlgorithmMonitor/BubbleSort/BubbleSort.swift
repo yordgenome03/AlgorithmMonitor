@@ -9,13 +9,16 @@ import Foundation
 
 struct BubbleSortUpdate {
     let array: [Int]
-    let activeIndices: (Int, Int)?
+    let selectedIndices: [Int]
+    let matchedIndices: [Int]
+    let confirmedIndices: [Int]
     let calculationAmount: Int
     let isCompleted: Bool
 }
 
 class BubbleSort {
     private(set) var array: [Int]
+    private(set) var confirmedIndices: [Int] = []
     private var currentI: Int = 0
     private var currentJ: Int = 0
     private(set) var calculationAmount: Int = 0
@@ -43,25 +46,30 @@ class BubbleSort {
                         }
                         calculationAmount += 1
                         if needsAnimation {
-                            yieldUpdate(continuation: continuation, indices: (j, j + 1))
+                            yieldUpdate(continuation: continuation, selectedIndices: [currentJ, currentJ + 1])
                             try await Task.sleep(nanoseconds: waitTimeForCalculation)
                         }
                         if array[j] > array[j + 1] {
+                            if needsAnimation {
+                                yieldUpdate(continuation: continuation, matchedIndices: [currentJ, currentJ + 1])
+                                try await Task.sleep(nanoseconds: waitTimeForCalculation)
+                            }
                             array.swapAt(j, j + 1)
                             if needsAnimation {
-                                yieldUpdate(continuation: continuation, indices: (j, j + 1))
-                                try await Task.sleep(nanoseconds: waitTimeForCalculation)
+                                yieldUpdate(continuation: continuation, selectedIndices: [currentJ, currentJ + 1])
+                                try await Task.sleep(nanoseconds: waitTimeForCalculation * 2)
                             }
                         }
                         currentJ += 1
                     }
+                    confirmedIndices.append(currentJ)
                     currentJ = 0
                     currentI += 1
                     if currentI == n - 1 {
                         completeSort(continuation: continuation)
                     } else {
                         if needsAnimation {
-                            yieldUpdate(continuation: continuation, indices: (currentJ, currentJ))
+                            yieldUpdate(continuation: continuation, selectedIndices: [currentJ])
                         }
                     }
                 }
@@ -81,23 +89,25 @@ class BubbleSort {
                 if currentI < n {
                     if currentJ < n - currentI - 1 {
                         calculationAmount += 1
-                        yieldUpdate(continuation: continuation, indices: (currentJ, currentJ + 1))
+                        yieldUpdate(continuation: continuation, selectedIndices: [currentJ, currentJ + 1])
                         try await Task.sleep(nanoseconds: 300_000_000)
                         
                         if array[currentJ] > array[currentJ + 1] {
+                            yieldUpdate(continuation: continuation, matchedIndices: [currentJ, currentJ + 1])
                             array.swapAt(currentJ, currentJ + 1)
-                            yieldUpdate(continuation: continuation, indices: (currentJ, currentJ + 1))
+                            yieldUpdate(continuation: continuation, selectedIndices: [currentJ, currentJ + 1])
                             try await Task.sleep(nanoseconds: 300_000_000)
                         }
                         currentJ += 1
                     } else {
+                        confirmedIndices.append(currentJ)
                         currentJ = 0
                         currentI += 1
                         
                         if currentI == n - 1 {
                             completeSort(continuation: continuation)
                         } else {
-                            yieldUpdate(continuation: continuation, indices: (currentJ, currentJ))
+                            yieldUpdate(continuation: continuation, selectedIndices: [currentJ])
                         }
                     }
                 }
@@ -111,14 +121,26 @@ class BubbleSort {
         isPaused = true
     }
     
-    private func yieldUpdate(continuation: AsyncStream<BubbleSortUpdate?>.Continuation, indices: (Int, Int)?) {
-        let update = BubbleSortUpdate(array: array, activeIndices: indices, calculationAmount: calculationAmount, isCompleted: isCompleted)
+    private func yieldUpdate(continuation: AsyncStream<BubbleSortUpdate?>.Continuation,
+                             selectedIndices: [Int] = [],
+                             matchedIndices: [Int] = []) {
+        let update = BubbleSortUpdate(array: array,
+                                      selectedIndices: selectedIndices,
+                                      matchedIndices: matchedIndices,
+                                      confirmedIndices: confirmedIndices,
+                                      calculationAmount: calculationAmount,
+                                      isCompleted: isCompleted)
         continuation.yield(update)
     }
     
     private func completeSort(continuation: AsyncStream<BubbleSortUpdate?>.Continuation) {
         isCompleted = true
-        let update = BubbleSortUpdate(array: array, activeIndices: nil, calculationAmount: calculationAmount, isCompleted: isCompleted)
+        let update = BubbleSortUpdate(array: array,
+                                      selectedIndices: [],
+                                      matchedIndices: [],
+                                      confirmedIndices: confirmedIndices,
+                                      calculationAmount: calculationAmount,
+                                      isCompleted: isCompleted)     
         continuation.yield(update)
         continuation.finish()
     }

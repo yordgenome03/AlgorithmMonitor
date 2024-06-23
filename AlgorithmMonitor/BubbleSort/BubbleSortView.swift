@@ -25,15 +25,16 @@ struct BubbleSortView: View {
                 
                 FlowLayout(alignment: .leading) {
                     ForEach(Array(viewModel.array.enumerated()), id: \.offset) { index, num in
-                        NumCell(num, isActive: isIndexActive(index))
+                        NumCell(num, index: index)
                             .matchedGeometryEffect(id: num, in: animation)
                     }
                 }
                 .animation(.easeInOut, value: viewModel.array)
                 .frame(maxWidth: .infinity)
                 .padding(16)
-                .background(                    RoundedRectangle(cornerRadius: 16)
-                    .fill(viewModel.isCompleted ? Color.mint : Color(.systemGray6))
+                .background(
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(viewModel.isCompleted ? Color.mint : Color(.systemGray6))
                 )
                 .padding(.horizontal, 16)
                 .padding(.vertical, 40)
@@ -52,17 +53,73 @@ struct BubbleSortView: View {
         })
         .navigationTitle("Bubble Sort")
     }
+}
+
+extension BubbleSortView {
     
-    private func isIndexActive(_ index: Int) -> Bool {
-        return viewModel.activeIndices?.0 == index || viewModel.activeIndices?.1 == index
+    private func cellState(for index: Int) -> CellState {
+        if viewModel.confirmedIndices.contains(index) {
+            return .confirmed
+        } else if viewModel.matchedIndices.contains(index) {
+            return .matched
+        } else if viewModel.selectedIndices.contains(index) {
+            return .selected
+        } else {
+            return .default
+        }
+    }
+    
+    enum CellState {
+        case `default`, selected, matched, confirmed
+        
+        var foregroundColor: Color {
+            switch self {
+            case .default:
+                return .primary
+            case .selected:
+                return .orange
+            case .matched:
+                return .white
+            case .confirmed:
+                return .mint
+            }
+        }
+        
+        var backgroundColor: Color {
+            switch self {
+            case .default:
+                return .white
+            case .selected:
+                return .white
+            case .matched:
+                return .orange
+            case .confirmed:
+                return .white
+            }
+        }
+        
+        var lineColor: Color {
+            switch self {
+            case .default:
+                return .primary
+            case .selected:
+                return .orange
+            case .matched:
+                return .orange
+            case .confirmed:
+                return .mint
+            }
+        }
     }
 }
 
 extension BubbleSortView {
     
-    private func NumCell(_ num: Int, isActive: Bool) -> some View {
-        let activeColor = viewModel.isCompleted ? Color.white: Color.red
-        let inactiveColor = viewModel.isCompleted ? Color.white: Color.primary
+    private func NumCell(_ num: Int, index: Int) -> some View {
+        let state = cellState(for: index)
+        let foregroundColor = viewModel.isCompleted ? Color.white : state.foregroundColor
+        let backgroundColor = viewModel.isCompleted ? Color.mint : state.backgroundColor
+        let lineColor = viewModel.isCompleted ? Color.white : state.lineColor
         let lineWidth: CGFloat = viewModel.isCompleted ? 1.5 : 1
         let fontWeight: Font.Weight = viewModel.isCompleted ? .semibold : .regular
         
@@ -70,11 +127,15 @@ extension BubbleSortView {
             .font(.body)
             .fontWeight(fontWeight)
             .padding(.horizontal, 4)
-            .foregroundColor(isActive ? activeColor : inactiveColor)
-            .overlay {
+            .foregroundColor(foregroundColor)
+            .background(
                 RoundedRectangle(cornerRadius: 8)
-                    .stroke(isActive ? activeColor : inactiveColor, lineWidth: lineWidth)
-            }
+                    .fill(backgroundColor)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(lineColor, lineWidth: lineWidth)
+                    }
+            )
             .padding(2)
     }
     

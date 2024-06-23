@@ -12,7 +12,9 @@ class BubbleSortViewModel: ObservableObject {
     @Published var initialArray: [Int] = []
     @Published var array: [Int] = []
     @Published var arrayCount: Int = 10
-    @Published var activeIndices: (Int, Int)? = nil
+    @Published var selectedIndices: [Int] = []
+    @Published var matchedIndices: [Int] = []
+    @Published var confirmedIndices: [Int] = []
     @Published var needsAnimation: Bool = true
     @Published private(set) var confirmedNeedsAnimation: Bool = true
     @Published private(set) var confirmedArrayCount: Int = 10
@@ -79,14 +81,18 @@ class BubbleSortViewModel: ObservableObject {
     private func applyUpdate(_ update: BubbleSortUpdate?) {
         if let update = update {
             self.array = update.array
-            self.activeIndices = update.activeIndices
+            self.selectedIndices = update.selectedIndices
+            self.matchedIndices = update.matchedIndices
+            self.confirmedIndices = update.confirmedIndices
             self.calculationAmount = update.calculationAmount
             self.isCompleted = update.isCompleted
         }
     }
     
     private func resetSortingState() {
-        activeIndices = nil
+        selectedIndices = []
+        matchedIndices = []
+        confirmedIndices = []
         isSorting = false
         isCompleted = false
         isStepping = false
