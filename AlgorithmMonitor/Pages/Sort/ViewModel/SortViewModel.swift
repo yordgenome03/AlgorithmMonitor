@@ -15,39 +15,69 @@ class SortViewModel<T: Sortable>: ObservableObject {
     @Published var matchedIndices: [Int] = []
     @Published var confirmedIndices: [Int] = []
     @Published var needsAnimation: Bool = true
-    @Published private(set) var confirmedNeedsAnimation: Bool = true
-    @Published private(set) var confirmedArrayCount: Int = 10
+    @Published private(set) var confirmedNeedsAnimation: Bool = true {
+        didSet {
+            needsAnimation = confirmedNeedsAnimation
+        }
+    }
+    @Published private(set) var confirmedArrayCount: Int = 10 {
+        didSet {
+            arrayCount = confirmedArrayCount
+        }
+    }
     @Published var calculationAmount: Int = 0
     @Published var isCompleted: Bool = false
     @Published var isSorting: Bool = false
     
+    private let settingsRepository: SettingsRepositoryProtocol
     private var sorter: T?
     
-    init() {
+    init(settingsRepository: SettingsRepositoryProtocol = SettingsRepository.shared) {
+        self.settingsRepository = settingsRepository
+        loadSettings()
         initializeArray()
     }
     
+    private func loadSettings() {
+        let (needsAnimation, arrayCount) = settingsRepository.loadSettings()
+        confirmedNeedsAnimation = needsAnimation
+        confirmedArrayCount = arrayCount
+    }
+
     private func initializeArray() {
         array = Array(1...confirmedArrayCount).shuffled()
         resetSortingState()
     }
     
     func startSort() async {
-        if sorter == nil {
-            sorter = T(array: array, needsAnimation: needsAnimation)
-        }
+        guard !isSorting && !isCompleted else { return }
+        await runSortingTask { self.sorter?.sort() }
+    }
+    
+    func stepForward() async {
+        guard !isSorting && !isCompleted else { return }
+        await runSortingTask { self.sorter?.stepForward() }
+    }
+    
+    private func runSortingTask(_ sortTask: @escaping () -> AsyncStream<SortUpdate?>?) async {
+        guard let sorter = ensureSorter(), let stream = sortTask() else { return }
         isSorting = true
-        isCompleted = false
-        for await update in sorter!.sort() {
+        for await update in stream {
             applyUpdate(update)
         }
         isSorting = false
     }
     
+    private func ensureSorter() -> T? {
+        if sorter == nil {
+            sorter = T(array: array, needsAnimation: needsAnimation)
+        }
+        return sorter
+    }
+    
     func stopSort() {
         sorter?.stop()
         isSorting = false
-        isCompleted = false
     }
     
     func resetArray() {
@@ -57,33 +87,19 @@ class SortViewModel<T: Sortable>: ObservableObject {
     }
     
     func applySettings() {
-        confirmedNeedsAnimation = needsAnimation
-        confirmedArrayCount = arrayCount
+        settingsRepository.saveSettings(needsAnimation: needsAnimation, arrayCount: arrayCount)
+        loadSettings()
         resetArray()
-    }
-    
-    func stepForward() async {
-        guard !isSorting && !isCompleted else { return }
-        isSorting = true
-        
-        if sorter == nil {
-            sorter = T(array: array, needsAnimation: needsAnimation)
-        }
-        
-        for await update in sorter!.stepForward() {
-            applyUpdate(update)
-        }
-        isSorting = false
     }
     
     private func applyUpdate(_ update: SortUpdate?) {
         if let update = update {
-            self.array = update.array
-            self.selectedIndices = update.selectedIndices
-            self.matchedIndices = update.matchedIndices
-            self.confirmedIndices = update.confirmedIndices
-            self.calculationAmount = update.calculationAmount
-            self.isCompleted = update.isCompleted
+            array = update.array
+            selectedIndices = update.selectedIndices
+            matchedIndices = update.matchedIndices
+            confirmedIndices = update.confirmedIndices
+            calculationAmount = update.calculationAmount
+            isCompleted = update.isCompleted
         }
     }
     

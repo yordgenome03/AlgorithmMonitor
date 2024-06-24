@@ -25,6 +25,7 @@
 		A1D311CC2C2924BE00D8F7C9 /* InsertionSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D311CB2C2924BE00D8F7C9 /* InsertionSort.swift */; };
 		A1D311CF2C293B7C00D8F7C9 /* BubbleSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D311CE2C293B7C00D8F7C9 /* BubbleSort.swift */; };
 		A1D311D52C293E4B00D8F7C9 /* SelectionSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D311D42C293E4B00D8F7C9 /* SelectionSort.swift */; };
+		A1D311D82C29711100D8F7C9 /* SettingsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D311D72C29711100D8F7C9 /* SettingsRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		A1D311CB2C2924BE00D8F7C9 /* InsertionSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertionSort.swift; sourceTree = "<group>"; };
 		A1D311CE2C293B7C00D8F7C9 /* BubbleSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleSort.swift; sourceTree = "<group>"; };
 		A1D311D42C293E4B00D8F7C9 /* SelectionSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionSort.swift; sourceTree = "<group>"; };
+		A1D311D72C29711100D8F7C9 /* SettingsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 		A1619C8B2C2536F4006B51AC /* Algorithms */ = {
 			isa = PBXGroup;
 			children = (
+				A1D311D62C29710600D8F7C9 /* Repositories */,
 				A1D311CD2C293B6A00D8F7C9 /* Sorts */,
 			);
 			path = Algorithms;
@@ -222,6 +225,14 @@
 				A1619C812C24CB48006B51AC /* FlowLayout.swift */,
 			);
 			path = Layouts;
+			sourceTree = "<group>";
+		};
+		A1D311D62C29710600D8F7C9 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				A1D311D72C29711100D8F7C9 /* SettingsRepository.swift */,
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -365,6 +376,7 @@
 				A1D311CA2C28F70C00D8F7C9 /* ChartTabView.swift in Sources */,
 				A1619C542C24C5A0006B51AC /* AlgorithmMonitorApp.swift in Sources */,
 				A1619C8A2C252A8D006B51AC /* Buttons.swift in Sources */,
+				A1D311D82C29711100D8F7C9 /* SettingsRepository.swift in Sources */,
 				A1D311D52C293E4B00D8F7C9 /* SelectionSort.swift in Sources */,
 				A1C10F332C261500004FE3F3 /* SortViewModel.swift in Sources */,
 			);
