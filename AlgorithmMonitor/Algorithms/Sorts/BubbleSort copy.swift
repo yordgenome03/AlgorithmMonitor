@@ -7,31 +7,22 @@
 
 import Foundation
 
-struct BubbleSortUpdate {
-    let array: [Int]
-    let selectedIndices: [Int]
-    let matchedIndices: [Int]
-    let confirmedIndices: [Int]
-    let calculationAmount: Int
-    let isCompleted: Bool
-}
-
-class BubbleSort {
+class BubbleSort: Sortable {
     private(set) var array: [Int]
     private(set) var confirmedIndices: [Int] = []
     private var currentI: Int = 0
     private var currentJ: Int = 0
-    private(set) var calculationAmount: Int = 0
-    private(set) var isPaused: Bool = false
-    private(set) var isCompleted: Bool = false
+    private var calculationAmount: Int = 0
+    private var isPaused: Bool = false
+    private var isCompleted: Bool = false
     private let needsAnimation: Bool
     
-    init(array: [Int], needsAnimation: Bool) {
+    required init(array: [Int], needsAnimation: Bool) {
         self.array = array
         self.needsAnimation = needsAnimation
     }
     
-    func sort() -> AsyncStream<BubbleSortUpdate?> {
+    func sort() -> AsyncStream<SortUpdate?> {
         isPaused = false
         return AsyncStream { continuation in
             Task {
@@ -77,7 +68,7 @@ class BubbleSort {
         }
     }
     
-    func stepForward() -> AsyncStream<BubbleSortUpdate?> {
+    func stepForward() -> AsyncStream<SortUpdate?> {
         return AsyncStream { continuation in
             Task {
                 guard !isCompleted else {
@@ -94,6 +85,7 @@ class BubbleSort {
                         
                         if array[currentJ] > array[currentJ + 1] {
                             yieldUpdate(continuation: continuation, matchedIndices: [currentJ, currentJ + 1])
+                            try await Task.sleep(nanoseconds: 300_000_000)
                             array.swapAt(currentJ, currentJ + 1)
                             yieldUpdate(continuation: continuation, selectedIndices: [currentJ, currentJ + 1])
                             try await Task.sleep(nanoseconds: 300_000_000)
@@ -121,10 +113,10 @@ class BubbleSort {
         isPaused = true
     }
     
-    private func yieldUpdate(continuation: AsyncStream<BubbleSortUpdate?>.Continuation,
+    private func yieldUpdate(continuation: AsyncStream<SortUpdate?>.Continuation,
                              selectedIndices: [Int] = [],
                              matchedIndices: [Int] = []) {
-        let update = BubbleSortUpdate(array: array,
+        let update = SortUpdate(array: array,
                                       selectedIndices: selectedIndices,
                                       matchedIndices: matchedIndices,
                                       confirmedIndices: confirmedIndices,
@@ -133,14 +125,14 @@ class BubbleSort {
         continuation.yield(update)
     }
     
-    private func completeSort(continuation: AsyncStream<BubbleSortUpdate?>.Continuation) {
+    private func completeSort(continuation: AsyncStream<SortUpdate?>.Continuation) {
         isCompleted = true
-        let update = BubbleSortUpdate(array: array,
+        let update = SortUpdate(array: array,
                                       selectedIndices: [],
                                       matchedIndices: [],
                                       confirmedIndices: confirmedIndices,
                                       calculationAmount: calculationAmount,
-                                      isCompleted: isCompleted)     
+                                      isCompleted: isCompleted)
         continuation.yield(update)
         continuation.finish()
     }

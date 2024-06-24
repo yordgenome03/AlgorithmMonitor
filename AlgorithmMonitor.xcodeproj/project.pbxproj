@@ -14,18 +14,16 @@
 		A1619C652C24C5A2006B51AC /* AlgorithmMonitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C642C24C5A2006B51AC /* AlgorithmMonitorTests.swift */; };
 		A1619C6F2C24C5A2006B51AC /* AlgorithmMonitorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C6E2C24C5A2006B51AC /* AlgorithmMonitorUITests.swift */; };
 		A1619C712C24C5A2006B51AC /* AlgorithmMonitorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C702C24C5A2006B51AC /* AlgorithmMonitorUITestsLaunchTests.swift */; };
-		A1619C802C24C729006B51AC /* BubbleSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C7F2C24C729006B51AC /* BubbleSortView.swift */; };
+		A1619C802C24C729006B51AC /* SortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C7F2C24C729006B51AC /* SortView.swift */; };
 		A1619C822C24CB48006B51AC /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C812C24CB48006B51AC /* FlowLayout.swift */; };
 		A1619C882C252926006B51AC /* Rows.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C872C252926006B51AC /* Rows.swift */; };
 		A1619C8A2C252A8D006B51AC /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C892C252A8D006B51AC /* Buttons.swift */; };
-		A1619C8D2C253701006B51AC /* SelectionSortViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C8C2C253701006B51AC /* SelectionSortViewModel.swift */; };
-		A1619C8F2C25371A006B51AC /* SelectionSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C8E2C25371A006B51AC /* SelectionSortView.swift */; };
-		A1619C912C2538E4006B51AC /* BubbleSortSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C902C2538E4006B51AC /* BubbleSortSettingsView.swift */; };
-		A1619C932C25396E006B51AC /* SelectionSortSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C922C25396E006B51AC /* SelectionSortSettingsView.swift */; };
-		A1619C952C2567F0006B51AC /* BubbleSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C942C2567F0006B51AC /* BubbleSort.swift */; };
-		A1C10F332C261500004FE3F3 /* BubbleSortViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C10F322C261500004FE3F3 /* BubbleSortViewModel.swift */; };
-		A1C10F352C26182B004FE3F3 /* BubbleSortTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C10F342C26182B004FE3F3 /* BubbleSortTests.swift */; };
+		A1619C912C2538E4006B51AC /* SortSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C902C2538E4006B51AC /* SortSettingsView.swift */; };
+		A1619C952C2567F0006B51AC /* Sortable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C942C2567F0006B51AC /* Sortable.swift */; };
+		A1C10F332C261500004FE3F3 /* SortViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C10F322C261500004FE3F3 /* SortViewModel.swift */; };
 		A1D311CA2C28F70C00D8F7C9 /* ChartTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D311C92C28F70C00D8F7C9 /* ChartTabView.swift */; };
+		A1D311CC2C2924BE00D8F7C9 /* SelectionSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D311CB2C2924BE00D8F7C9 /* SelectionSort.swift */; };
+		A1D311CF2C293B7C00D8F7C9 /* BubbleSort copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D311CE2C293B7C00D8F7C9 /* BubbleSort copy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,18 +54,16 @@
 		A1619C6A2C24C5A2006B51AC /* AlgorithmMonitorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlgorithmMonitorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1619C6E2C24C5A2006B51AC /* AlgorithmMonitorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgorithmMonitorUITests.swift; sourceTree = "<group>"; };
 		A1619C702C24C5A2006B51AC /* AlgorithmMonitorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgorithmMonitorUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		A1619C7F2C24C729006B51AC /* BubbleSortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleSortView.swift; sourceTree = "<group>"; };
+		A1619C7F2C24C729006B51AC /* SortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortView.swift; sourceTree = "<group>"; };
 		A1619C812C24CB48006B51AC /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
 		A1619C872C252926006B51AC /* Rows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rows.swift; sourceTree = "<group>"; };
 		A1619C892C252A8D006B51AC /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
-		A1619C8C2C253701006B51AC /* SelectionSortViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionSortViewModel.swift; sourceTree = "<group>"; };
-		A1619C8E2C25371A006B51AC /* SelectionSortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionSortView.swift; sourceTree = "<group>"; };
-		A1619C902C2538E4006B51AC /* BubbleSortSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleSortSettingsView.swift; sourceTree = "<group>"; };
-		A1619C922C25396E006B51AC /* SelectionSortSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionSortSettingsView.swift; sourceTree = "<group>"; };
-		A1619C942C2567F0006B51AC /* BubbleSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleSort.swift; sourceTree = "<group>"; };
-		A1C10F322C261500004FE3F3 /* BubbleSortViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleSortViewModel.swift; sourceTree = "<group>"; };
-		A1C10F342C26182B004FE3F3 /* BubbleSortTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleSortTests.swift; sourceTree = "<group>"; };
+		A1619C902C2538E4006B51AC /* SortSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortSettingsView.swift; sourceTree = "<group>"; };
+		A1619C942C2567F0006B51AC /* Sortable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sortable.swift; sourceTree = "<group>"; };
+		A1C10F322C261500004FE3F3 /* SortViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortViewModel.swift; sourceTree = "<group>"; };
 		A1D311C92C28F70C00D8F7C9 /* ChartTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTabView.swift; sourceTree = "<group>"; };
+		A1D311CB2C2924BE00D8F7C9 /* SelectionSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionSort.swift; sourceTree = "<group>"; };
+		A1D311CE2C293B7C00D8F7C9 /* BubbleSort copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BubbleSort copy.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,11 +115,10 @@
 			isa = PBXGroup;
 			children = (
 				A1619C532C24C5A0006B51AC /* AlgorithmMonitorApp.swift */,
-				A1619C552C24C5A0006B51AC /* ContentView.swift */,
-				A1619C8B2C2536F4006B51AC /* SelectionSort */,
-				A1619C832C250827006B51AC /* BubbleSort */,
-				A1619C812C24CB48006B51AC /* FlowLayout.swift */,
+				A1619C8B2C2536F4006B51AC /* Algorithms */,
+				A1619C832C250827006B51AC /* Pages */,
 				A1619C862C25290D006B51AC /* Components */,
+				A1D311D32C293C4B00D8F7C9 /* Layouts */,
 				A1619C572C24C5A2006B51AC /* Assets.xcassets */,
 				A1619C592C24C5A2006B51AC /* Preview Content */,
 			);
@@ -141,7 +136,6 @@
 		A1619C632C24C5A2006B51AC /* AlgorithmMonitorTests */ = {
 			isa = PBXGroup;
 			children = (
-				A1C10F342C26182B004FE3F3 /* BubbleSortTests.swift */,
 				A1619C642C24C5A2006B51AC /* AlgorithmMonitorTests.swift */,
 			);
 			path = AlgorithmMonitorTests;
@@ -156,15 +150,13 @@
 			path = AlgorithmMonitorUITests;
 			sourceTree = "<group>";
 		};
-		A1619C832C250827006B51AC /* BubbleSort */ = {
+		A1619C832C250827006B51AC /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				A1619C942C2567F0006B51AC /* BubbleSort.swift */,
-				A1C10F322C261500004FE3F3 /* BubbleSortViewModel.swift */,
-				A1619C7F2C24C729006B51AC /* BubbleSortView.swift */,
-				A1619C902C2538E4006B51AC /* BubbleSortSettingsView.swift */,
+				A1619C552C24C5A0006B51AC /* ContentView.swift */,
+				A1D311D12C293C1600D8F7C9 /* Sort */,
 			);
-			path = BubbleSort;
+			path = Pages;
 			sourceTree = "<group>";
 		};
 		A1619C862C25290D006B51AC /* Components */ = {
@@ -177,14 +169,56 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		A1619C8B2C2536F4006B51AC /* SelectionSort */ = {
+		A1619C8B2C2536F4006B51AC /* Algorithms */ = {
 			isa = PBXGroup;
 			children = (
-				A1619C8C2C253701006B51AC /* SelectionSortViewModel.swift */,
-				A1619C922C25396E006B51AC /* SelectionSortSettingsView.swift */,
-				A1619C8E2C25371A006B51AC /* SelectionSortView.swift */,
+				A1D311CD2C293B6A00D8F7C9 /* Sorts */,
 			);
-			path = SelectionSort;
+			path = Algorithms;
+			sourceTree = "<group>";
+		};
+		A1D311CD2C293B6A00D8F7C9 /* Sorts */ = {
+			isa = PBXGroup;
+			children = (
+				A1619C942C2567F0006B51AC /* Sortable.swift */,
+				A1D311CE2C293B7C00D8F7C9 /* BubbleSort copy.swift */,
+				A1D311CB2C2924BE00D8F7C9 /* SelectionSort.swift */,
+			);
+			path = Sorts;
+			sourceTree = "<group>";
+		};
+		A1D311D02C293C0500D8F7C9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A1619C7F2C24C729006B51AC /* SortView.swift */,
+				A1619C902C2538E4006B51AC /* SortSettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A1D311D12C293C1600D8F7C9 /* Sort */ = {
+			isa = PBXGroup;
+			children = (
+				A1D311D22C293C3800D8F7C9 /* ViewModel */,
+				A1D311D02C293C0500D8F7C9 /* Views */,
+			);
+			path = Sort;
+			sourceTree = "<group>";
+		};
+		A1D311D22C293C3800D8F7C9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A1C10F322C261500004FE3F3 /* SortViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A1D311D32C293C4B00D8F7C9 /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				A1619C812C24CB48006B51AC /* FlowLayout.swift */,
+			);
+			path = Layouts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,19 +351,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1619C912C2538E4006B51AC /* BubbleSortSettingsView.swift in Sources */,
-				A1619C952C2567F0006B51AC /* BubbleSort.swift in Sources */,
+				A1619C912C2538E4006B51AC /* SortSettingsView.swift in Sources */,
+				A1619C952C2567F0006B51AC /* Sortable.swift in Sources */,
 				A1619C562C24C5A0006B51AC /* ContentView.swift in Sources */,
+				A1D311CF2C293B7C00D8F7C9 /* BubbleSort copy.swift in Sources */,
 				A1619C822C24CB48006B51AC /* FlowLayout.swift in Sources */,
-				A1619C8F2C25371A006B51AC /* SelectionSortView.swift in Sources */,
 				A1619C882C252926006B51AC /* Rows.swift in Sources */,
-				A1619C802C24C729006B51AC /* BubbleSortView.swift in Sources */,
+				A1619C802C24C729006B51AC /* SortView.swift in Sources */,
+				A1D311CC2C2924BE00D8F7C9 /* SelectionSort.swift in Sources */,
 				A1D311CA2C28F70C00D8F7C9 /* ChartTabView.swift in Sources */,
 				A1619C542C24C5A0006B51AC /* AlgorithmMonitorApp.swift in Sources */,
-				A1619C8D2C253701006B51AC /* SelectionSortViewModel.swift in Sources */,
 				A1619C8A2C252A8D006B51AC /* Buttons.swift in Sources */,
-				A1C10F332C261500004FE3F3 /* BubbleSortViewModel.swift in Sources */,
-				A1619C932C25396E006B51AC /* SelectionSortSettingsView.swift in Sources */,
+				A1C10F332C261500004FE3F3 /* SortViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,7 +370,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1C10F352C26182B004FE3F3 /* BubbleSortTests.swift in Sources */,
 				A1619C652C24C5A2006B51AC /* AlgorithmMonitorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

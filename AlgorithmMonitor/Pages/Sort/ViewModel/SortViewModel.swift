@@ -1,5 +1,5 @@
 //
-//  BubbleSortViewModel.swift
+//  SortViewModel.swift
 //  AlgorithmMonitor
 //
 //  Created by yotahara on 2024/06/21.
@@ -8,8 +8,7 @@
 import Foundation
 
 @MainActor
-class BubbleSortViewModel: ObservableObject {
-    @Published var initialArray: [Int] = []
+class SortViewModel<T: Sortable>: ObservableObject {
     @Published var array: [Int] = []
     @Published var arrayCount: Int = 10
     @Published var selectedIndices: [Int] = []
@@ -23,7 +22,7 @@ class BubbleSortViewModel: ObservableObject {
     @Published var isSorting: Bool = false
     @Published var isStepping: Bool = false
     
-    private var bubbleSort: BubbleSort?
+    private var sorter: T?
     
     init() {
         initializeArray()
@@ -35,19 +34,19 @@ class BubbleSortViewModel: ObservableObject {
     }
     
     func startSort() async {
-        if bubbleSort == nil {
-            bubbleSort = BubbleSort(array: array, needsAnimation: needsAnimation)
+        if sorter == nil {
+            sorter = T(array: array, needsAnimation: needsAnimation)
         }
         isSorting = true
         isCompleted = false
-        for await update in bubbleSort!.sort() {
+        for await update in sorter!.sort() {
             applyUpdate(update)
         }
         isSorting = false
     }
     
     func stopSort() {
-        bubbleSort?.stop()
+        sorter?.stop()
         isSorting = false
         isCompleted = false
     }
@@ -68,17 +67,17 @@ class BubbleSortViewModel: ObservableObject {
         guard !isStepping && !isSorting && !isCompleted else { return }
         isStepping = true
         
-        if bubbleSort == nil {
-            bubbleSort = BubbleSort(array: array, needsAnimation: needsAnimation)
+        if sorter == nil {
+            sorter = T(array: array, needsAnimation: needsAnimation)
         }
         
-        for await update in bubbleSort!.stepForward() {
+        for await update in sorter!.stepForward() {
             applyUpdate(update)
         }
         isStepping = false
     }
     
-    private func applyUpdate(_ update: BubbleSortUpdate?) {
+    private func applyUpdate(_ update: SortUpdate?) {
         if let update = update {
             self.array = update.array
             self.selectedIndices = update.selectedIndices
@@ -97,6 +96,6 @@ class BubbleSortViewModel: ObservableObject {
         isCompleted = false
         isStepping = false
         calculationAmount = 0
-        bubbleSort = nil
+        sorter = nil
     }
 }

@@ -14,12 +14,12 @@ enum DisplayStyle: String, CustomStringConvertible, CaseIterable {
     var description: String { self.rawValue }
 }
 
-struct ChartTabView: View {
-    @StateObject private var viewModel: BubbleSortViewModel
+struct ChartTabView<T: Sortable>: View {
+    @StateObject private var viewModel: SortViewModel<T>
     @State private var selection: DisplayStyle = .capsules
     @Namespace var animation
     
-    init(viewModel: BubbleSortViewModel) {
+    init(viewModel: SortViewModel<T>) {
         self._viewModel = StateObject(wrappedValue: viewModel)
     }
     
@@ -28,15 +28,16 @@ struct ChartTabView: View {
             DisplayStylePicker
             
             TabView(selection: $selection) {
-                BarChart
-                    .edgesIgnoringSafeArea(.bottom)
-                    .tag(DisplayStyle.bars)
-                
                 CapsuleChart
                     .edgesIgnoringSafeArea(.bottom)
                     .tag(DisplayStyle.capsules)
+                
+                BarChart
+                    .edgesIgnoringSafeArea(.bottom)
+                    .tag(DisplayStyle.bars)
             }
             .frame(height: 248)
+            .tabViewStyle(.page(indexDisplayMode: .never))
         }
         .padding(16)
     }
@@ -177,6 +178,6 @@ struct ChartTabView: View {
 
 #Preview {
     NavigationStack {
-        ChartTabView(viewModel: .init())
+        ChartTabView<BubbleSort>(viewModel: .init())
     }
 }

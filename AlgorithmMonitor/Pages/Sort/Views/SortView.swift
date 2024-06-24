@@ -1,5 +1,5 @@
 //
-//  BubbleSortView.swift
+//  SortView.swift
 //  AlgorithmMonitor
 //
 //  Created by yotahara on 2024/06/21.
@@ -7,10 +7,14 @@
 
 import SwiftUI
 
-struct BubbleSortView: View {
-    @StateObject private var viewModel = BubbleSortViewModel()
+struct SortView<T: Sortable>: View {
+    @StateObject private var viewModel: SortViewModel<T>
     @State private var showSettings = false
     @Environment(\.dismiss) var dismiss
+    
+    init() {
+        self._viewModel = StateObject(wrappedValue: SortViewModel<T>())
+    }
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -32,15 +36,14 @@ struct BubbleSortView: View {
         }
         .sheet(isPresented: $showSettings) {
             NavigationStack {
-                BubbleSortSettingsView(viewModel: viewModel)
+                SortSettingsView<T>(viewModel: viewModel)
             }
             .presentationDetents([.medium])
         }
-        .navigationTitle("Bubble Sort")
     }
 }
 
-private extension BubbleSortView {
+private extension SortView {
     
     private var InfoPanel: some View {
         VStack {
@@ -88,6 +91,6 @@ private extension BubbleSortView {
 
 #Preview {
     NavigationStack {
-        BubbleSortView()
+        SortView<BubbleSort>()
     }
 }

@@ -12,18 +12,20 @@ struct ContentView: View {
         NavigationStack {
             List {
                 NavigationLink {
-                    BubbleSortView()
+                    SortView<BubbleSort>()
+                        .navigationTitle("Bubble Sort")
                 } label: {
                     Text("Bubble Sort")
                 }
                 
                 NavigationLink {
-                    SelectionSortView()
+                    SortView<SelectionSort>()
+                        .navigationTitle("Selection Sort")                    
                 } label: {
                     Text("Selection Sort")
                 }
             }
-            .navigationTitle("Algorithm")
+            .navigationTitle("Algorithm List")
         }
     }
 }
