@@ -9,13 +9,12 @@ import SwiftUI
 
 struct BubbleSortView: View {
     @StateObject private var viewModel = BubbleSortViewModel()
-    @State private var showSettings: Bool = false
+    @State private var showSettings = false
     @Environment(\.dismiss) var dismiss
-    @Namespace var animation
     
     var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack {
+            VStack(spacing: 8) {
                 InfoPanel
                 
                 StrokedButton(title: "Settings", color: .mint) {
@@ -23,21 +22,7 @@ struct BubbleSortView: View {
                     showSettings.toggle()
                 }
                 
-                FlowLayout(alignment: .leading) {
-                    ForEach(Array(viewModel.array.enumerated()), id: \.offset) { index, num in
-                        NumCell(num, index: index)
-                            .matchedGeometryEffect(id: num, in: animation)
-                    }
-                }
-                .animation(.easeInOut, value: viewModel.array)
-                .frame(maxWidth: .infinity)
-                .padding(16)
-                .background(
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(viewModel.isCompleted ? Color.mint : Color(.systemGray6))
-                )
-                .padding(.horizontal, 16)
-                .padding(.vertical, 40)
+                ChartTabView(viewModel: viewModel)
                 
                 ControlPanel
                 
@@ -45,99 +30,17 @@ struct BubbleSortView: View {
             }
             .padding(.horizontal, 16)
         }
-        .sheet(isPresented: $showSettings, content: {
+        .sheet(isPresented: $showSettings) {
             NavigationStack {
                 BubbleSortSettingsView(viewModel: viewModel)
             }
             .presentationDetents([.medium])
-        })
+        }
         .navigationTitle("Bubble Sort")
     }
 }
 
-extension BubbleSortView {
-    
-    private func cellState(for index: Int) -> CellState {
-        if viewModel.confirmedIndices.contains(index) {
-            return .confirmed
-        } else if viewModel.matchedIndices.contains(index) {
-            return .matched
-        } else if viewModel.selectedIndices.contains(index) {
-            return .selected
-        } else {
-            return .default
-        }
-    }
-    
-    enum CellState {
-        case `default`, selected, matched, confirmed
-        
-        var foregroundColor: Color {
-            switch self {
-            case .default:
-                return .primary
-            case .selected:
-                return .orange
-            case .matched:
-                return .white
-            case .confirmed:
-                return .mint
-            }
-        }
-        
-        var backgroundColor: Color {
-            switch self {
-            case .default:
-                return .white
-            case .selected:
-                return .white
-            case .matched:
-                return .orange
-            case .confirmed:
-                return .white
-            }
-        }
-        
-        var lineColor: Color {
-            switch self {
-            case .default:
-                return .primary
-            case .selected:
-                return .orange
-            case .matched:
-                return .orange
-            case .confirmed:
-                return .mint
-            }
-        }
-    }
-}
-
-extension BubbleSortView {
-    
-    private func NumCell(_ num: Int, index: Int) -> some View {
-        let state = cellState(for: index)
-        let foregroundColor = viewModel.isCompleted ? Color.white : state.foregroundColor
-        let backgroundColor = viewModel.isCompleted ? Color.mint : state.backgroundColor
-        let lineColor = viewModel.isCompleted ? Color.white : state.lineColor
-        let lineWidth: CGFloat = viewModel.isCompleted ? 1.5 : 1
-        let fontWeight: Font.Weight = viewModel.isCompleted ? .semibold : .regular
-        
-        return Text("\(num)")
-            .font(.body)
-            .fontWeight(fontWeight)
-            .padding(.horizontal, 4)
-            .foregroundColor(foregroundColor)
-            .background(
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(backgroundColor)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(lineColor, lineWidth: lineWidth)
-                    }
-            )
-            .padding(2)
-    }
+private extension BubbleSortView {
     
     private var InfoPanel: some View {
         VStack {
@@ -161,23 +64,19 @@ extension BubbleSortView {
                     }
                 } else {
                     FilledButton(title: "Start", color: .blue) {
-                        Task {
-                            await viewModel.startSort()
-                        }
+                        Task { await viewModel.startSort() }
                     }
-                    .disabled(viewModel.isStepping)
-                    .opacity(viewModel.isStepping ? 0.5 : 1)
+                    .disabled(viewModel.isStepping || viewModel.isCompleted)
+                    .opacity(viewModel.isStepping || viewModel.isCompleted ? 0.5 : 1)
                 }
                 
                 Spacer()
                 
                 FilledButton(title: "Step Forward", color: .mint) {
-                    Task {
-                        await viewModel.stepForward()
-                    }
+                    Task { await viewModel.stepForward() }
                 }
-                .disabled((viewModel.isSorting || viewModel.isStepping))
-                .opacity((viewModel.isSorting || viewModel.isStepping) ? 0.5 : 1)
+                .disabled(viewModel.isSorting || viewModel.isStepping || viewModel.isCompleted)
+                .opacity(viewModel.isSorting || viewModel.isStepping || viewModel.isCompleted ? 0.5 : 1)
             }
             
             StrokedButton(title: "Reset", color: .mint) {

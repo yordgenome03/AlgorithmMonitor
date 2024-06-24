@@ -20,7 +20,7 @@ struct BubbleSortSettingsView: View {
             SettingRow(label: "Numbers Count:",
                        value: "\(viewModel.arrayCount)",
                        content: {
-                Stepper("", value: $viewModel.arrayCount, in: 1...100, step: 5)
+                Stepper("", value: $viewModel.arrayCount, in: 5...100, step: 5)
                     .padding(.vertical)
             })
             

@@ -25,6 +25,7 @@
 		A1619C952C2567F0006B51AC /* BubbleSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1619C942C2567F0006B51AC /* BubbleSort.swift */; };
 		A1C10F332C261500004FE3F3 /* BubbleSortViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C10F322C261500004FE3F3 /* BubbleSortViewModel.swift */; };
 		A1C10F352C26182B004FE3F3 /* BubbleSortTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C10F342C26182B004FE3F3 /* BubbleSortTests.swift */; };
+		A1D311CA2C28F70C00D8F7C9 /* ChartTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D311C92C28F70C00D8F7C9 /* ChartTabView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		A1619C942C2567F0006B51AC /* BubbleSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleSort.swift; sourceTree = "<group>"; };
 		A1C10F322C261500004FE3F3 /* BubbleSortViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleSortViewModel.swift; sourceTree = "<group>"; };
 		A1C10F342C26182B004FE3F3 /* BubbleSortTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleSortTests.swift; sourceTree = "<group>"; };
+		A1D311C92C28F70C00D8F7C9 /* ChartTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 		A1619C862C25290D006B51AC /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				A1D311C92C28F70C00D8F7C9 /* ChartTabView.swift */,
 				A1619C892C252A8D006B51AC /* Buttons.swift */,
 				A1619C872C252926006B51AC /* Rows.swift */,
 			);
@@ -321,6 +324,7 @@
 				A1619C8F2C25371A006B51AC /* SelectionSortView.swift in Sources */,
 				A1619C882C252926006B51AC /* Rows.swift in Sources */,
 				A1619C802C24C729006B51AC /* BubbleSortView.swift in Sources */,
+				A1D311CA2C28F70C00D8F7C9 /* ChartTabView.swift in Sources */,
 				A1619C542C24C5A0006B51AC /* AlgorithmMonitorApp.swift in Sources */,
 				A1619C8D2C253701006B51AC /* SelectionSortViewModel.swift in Sources */,
 				A1619C8A2C252A8D006B51AC /* Buttons.swift in Sources */,
