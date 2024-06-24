@@ -119,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				A1619C532C24C5A0006B51AC /* AlgorithmMonitorApp.swift */,
+				A1D311D62C29710600D8F7C9 /* Repositories */,
 				A1619C8B2C2536F4006B51AC /* Algorithms */,
 				A1619C832C250827006B51AC /* Pages */,
 				A1619C862C25290D006B51AC /* Components */,
@@ -176,7 +177,6 @@
 		A1619C8B2C2536F4006B51AC /* Algorithms */ = {
 			isa = PBXGroup;
 			children = (
-				A1D311D62C29710600D8F7C9 /* Repositories */,
 				A1D311CD2C293B6A00D8F7C9 /* Sorts */,
 			);
 			path = Algorithms;

@@ -50,8 +50,10 @@ struct ChartTabView<T: Sortable>: View {
                         index: index,
                         width: geometry.size.width / CGFloat(viewModel.array.count),
                         height: geometry.size.height / CGFloat(viewModel.array.count) * CGFloat(num))
+                    .matchedGeometryEffect(id: num, in: animation)
                 }
             }
+            .animation(.easeInOut, value: viewModel.array)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(16)

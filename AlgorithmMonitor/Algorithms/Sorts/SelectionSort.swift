@@ -46,11 +46,15 @@ class SelectionSort: Sortable {
                             
                             calculationAmount += 1
                             if needsAnimation {
-                                yieldUpdate(continuation: continuation, selectedIndices: [currentI, currentJ], matchedIndices: [minIndex])
+                                yieldUpdate(continuation: continuation, selectedIndices: [currentJ], matchedIndices: [currentI, minIndex])
                                 try await Task.sleep(nanoseconds: waitTimeForCalculation)
                             }
                             if array[currentJ] < array[minIndex] {
                                 minIndex = currentJ
+                                if needsAnimation {
+                                    yieldUpdate(continuation: continuation, selectedIndices: [currentJ], matchedIndices: [currentI, minIndex])
+                                    try await Task.sleep(nanoseconds: waitTimeForCalculation)
+                                }
                             }
                             currentJ += 1
                         }
