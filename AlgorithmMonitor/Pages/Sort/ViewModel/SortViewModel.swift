@@ -20,7 +20,6 @@ class SortViewModel<T: Sortable>: ObservableObject {
     @Published var calculationAmount: Int = 0
     @Published var isCompleted: Bool = false
     @Published var isSorting: Bool = false
-    @Published var isStepping: Bool = false
     
     private var sorter: T?
     
@@ -64,8 +63,8 @@ class SortViewModel<T: Sortable>: ObservableObject {
     }
     
     func stepForward() async {
-        guard !isStepping && !isSorting && !isCompleted else { return }
-        isStepping = true
+        guard !isSorting && !isCompleted else { return }
+        isSorting = true
         
         if sorter == nil {
             sorter = T(array: array, needsAnimation: needsAnimation)
@@ -74,7 +73,7 @@ class SortViewModel<T: Sortable>: ObservableObject {
         for await update in sorter!.stepForward() {
             applyUpdate(update)
         }
-        isStepping = false
+        isSorting = false
     }
     
     private func applyUpdate(_ update: SortUpdate?) {
@@ -89,13 +88,12 @@ class SortViewModel<T: Sortable>: ObservableObject {
     }
     
     private func resetSortingState() {
+        sorter = nil
         selectedIndices = []
         matchedIndices = []
         confirmedIndices = []
         isSorting = false
         isCompleted = false
-        isStepping = false
         calculationAmount = 0
-        sorter = nil
     }
 }

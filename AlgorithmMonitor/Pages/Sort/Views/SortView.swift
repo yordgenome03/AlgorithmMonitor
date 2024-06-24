@@ -69,8 +69,8 @@ private extension SortView {
                     FilledButton(title: "Start", color: .blue) {
                         Task { await viewModel.startSort() }
                     }
-                    .disabled(viewModel.isStepping || viewModel.isCompleted)
-                    .opacity(viewModel.isStepping || viewModel.isCompleted ? 0.5 : 1)
+                    .disabled(viewModel.isCompleted)
+                    .opacity(viewModel.isCompleted ? 0.5 : 1)
                 }
                 
                 Spacer()
@@ -78,8 +78,8 @@ private extension SortView {
                 FilledButton(title: "Step Forward", color: .mint) {
                     Task { await viewModel.stepForward() }
                 }
-                .disabled(viewModel.isSorting || viewModel.isStepping || viewModel.isCompleted)
-                .opacity(viewModel.isSorting || viewModel.isStepping || viewModel.isCompleted ? 0.5 : 1)
+                .disabled(viewModel.isSorting || viewModel.isCompleted)
+                .opacity(viewModel.isSorting || viewModel.isCompleted ? 0.5 : 1)
             }
             
             StrokedButton(title: "Reset", color: .mint) {

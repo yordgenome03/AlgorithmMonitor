@@ -150,7 +150,7 @@ struct ChartTabView<T: Sortable>: View {
         var foregroundColor: Color {
             switch self {
             case .default: return .primary
-            case .selected: return .yellow
+            case .selected: return .red
             case .matched: return .white
             case .confirmed: return .white
             }
@@ -168,7 +168,7 @@ struct ChartTabView<T: Sortable>: View {
         var lineColor: Color {
             switch self {
             case .default: return .primary
-            case .selected: return .yellow
+            case .selected: return .red
             case .matched: return .white
             case .confirmed: return .white
             }
