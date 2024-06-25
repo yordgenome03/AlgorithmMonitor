@@ -39,14 +39,13 @@ class SortViewModel<T: Sortable>: ObservableObject {
     }
     
     private func loadSettings() {
-        let (needsAnimation, arrayCount) = settingsRepository.loadSettings()
+        let (needsAnimation, arrayCount) = settingsRepository.loadSortSettings()
         confirmedNeedsAnimation = needsAnimation
         confirmedArrayCount = arrayCount
     }
-
+    
     private func initializeArray() {
         array = Array(1...confirmedArrayCount).shuffled()
-        resetSortingState()
     }
     
     func startSort() async {
@@ -60,7 +59,8 @@ class SortViewModel<T: Sortable>: ObservableObject {
     }
     
     private func runSortingTask(_ sortTask: @escaping () -> AsyncStream<SortUpdate?>?) async {
-        guard let sorter = ensureSorter(), let stream = sortTask() else { return }
+        ensureSorter()
+        guard let stream = sortTask() else { return }
         isSorting = true
         for await update in stream {
             applyUpdate(update)
@@ -68,11 +68,10 @@ class SortViewModel<T: Sortable>: ObservableObject {
         isSorting = false
     }
     
-    private func ensureSorter() -> T? {
+    private func ensureSorter() {
         if sorter == nil {
             sorter = T(array: array, needsAnimation: needsAnimation)
         }
-        return sorter
     }
     
     func stopSort() {
@@ -81,13 +80,12 @@ class SortViewModel<T: Sortable>: ObservableObject {
     }
     
     func resetArray() {
-        stopSort()
-        initializeArray()
         resetSortingState()
+        initializeArray()
     }
     
     func applySettings() {
-        settingsRepository.saveSettings(needsAnimation: needsAnimation, arrayCount: arrayCount)
+        settingsRepository.saveSortSettings(needsAnimation: needsAnimation, arrayCount: arrayCount)
         loadSettings()
         resetArray()
     }
@@ -104,6 +102,7 @@ class SortViewModel<T: Sortable>: ObservableObject {
     }
     
     private func resetSortingState() {
+        sorter?.reset()
         sorter = nil
         selectedIndices = []
         matchedIndices = []

@@ -35,6 +35,8 @@
 		A1D311EA2C2A4F1D00D8F7C9 /* SearchSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D311E92C2A4F1D00D8F7C9 /* SearchSettingsView.swift */; };
 		A1D311EC2C2ABF0F00D8F7C9 /* SearchUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D311EB2C2ABF0F00D8F7C9 /* SearchUpdate.swift */; };
 		A1D311EE2C2ABF5C00D8F7C9 /* Searchable copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D311ED2C2ABF5C00D8F7C9 /* Searchable copy.swift */; };
+		A1D311F02C2AC00800D8F7C9 /* SortUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D311EF2C2AC00800D8F7C9 /* SortUpdate.swift */; };
+		A1D311F22C2AC00A00D8F7C9 /* SortHelpler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D311F12C2AC00A00D8F7C9 /* SortHelpler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,8 @@
 		A1D311E92C2A4F1D00D8F7C9 /* SearchSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSettingsView.swift; sourceTree = "<group>"; };
 		A1D311EB2C2ABF0F00D8F7C9 /* SearchUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUpdate.swift; sourceTree = "<group>"; };
 		A1D311ED2C2ABF5C00D8F7C9 /* Searchable copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Searchable copy.swift"; sourceTree = "<group>"; };
+		A1D311EF2C2AC00800D8F7C9 /* SortUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortUpdate.swift; sourceTree = "<group>"; };
+		A1D311F12C2AC00A00D8F7C9 /* SortHelpler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortHelpler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +209,8 @@
 			isa = PBXGroup;
 			children = (
 				A1619C942C2567F0006B51AC /* Sortable.swift */,
+				A1D311EF2C2AC00800D8F7C9 /* SortUpdate.swift */,
+				A1D311F12C2AC00A00D8F7C9 /* SortHelpler.swift */,
 				A1D311CE2C293B7C00D8F7C9 /* BubbleSort.swift */,
 				A1D311D42C293E4B00D8F7C9 /* SelectionSort.swift */,
 				A1D311CB2C2924BE00D8F7C9 /* InsertionSort.swift */,
@@ -430,6 +436,7 @@
 				A1619C952C2567F0006B51AC /* Sortable.swift in Sources */,
 				A1D311EC2C2ABF0F00D8F7C9 /* SearchUpdate.swift in Sources */,
 				A1D311DB2C29E2B300D8F7C9 /* SearchViewModel.swift in Sources */,
+				A1D311F22C2AC00A00D8F7C9 /* SortHelpler.swift in Sources */,
 				A1D311E12C29E33B00D8F7C9 /* LinearSearch.swift in Sources */,
 				A1619C562C24C5A0006B51AC /* ContentView.swift in Sources */,
 				A1D311EA2C2A4F1D00D8F7C9 /* SearchSettingsView.swift in Sources */,
@@ -445,6 +452,7 @@
 				A1D311DD2C29E2CC00D8F7C9 /* SearchView.swift in Sources */,
 				A1D311D82C29711100D8F7C9 /* SettingsRepository.swift in Sources */,
 				A1D311D52C293E4B00D8F7C9 /* SelectionSort.swift in Sources */,
+				A1D311F02C2AC00800D8F7C9 /* SortUpdate.swift in Sources */,
 				A1D311DF2C29E31C00D8F7C9 /* SearchHelper.swift in Sources */,
 				A1C10F332C261500004FE3F3 /* SortViewModel.swift in Sources */,
 			);

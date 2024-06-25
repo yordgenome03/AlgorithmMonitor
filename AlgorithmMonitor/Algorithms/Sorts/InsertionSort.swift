@@ -8,53 +8,49 @@
 import Foundation
 
 class InsertionSort: Sortable {
-    private(set) var array: [Int]
-    private(set) var confirmedIndices: [Int] = []
+    private let helper: SortHelper
     private var currentI: Int = 1
     private var currentJ: Int = 1
     private var selectedIndices: [Int] = []
-    private var calculationAmount: Int = 0
-    private var isPaused: Bool = false
-    private var isCompleted: Bool = false
-    private let needsAnimation: Bool
-    private var sortingTask: Task<Void, Never>? = nil
+    
+    var array: [Int] {
+        return helper.array
+    }
     
     required init(array: [Int], needsAnimation: Bool) {
-        self.array = array
-        self.needsAnimation = needsAnimation
+        self.helper = SortHelper(array: array, needsAnimation: needsAnimation)
     }
     
     func sort() -> AsyncStream<SortUpdate?> {
-        isPaused = false
+        helper.isPaused = false
         return AsyncStream { continuation in
-            sortingTask = Task(priority: .userInitiated) {
+            helper.sortingTask = Task(priority: .userInitiated) {
                 do {
-                    
-                    let n = array.count
+                    let n = helper.array.count
                     let waitTimeForCalculation: UInt64 = UInt64(10_000_000_000) / UInt64(n * (n - 1) / 2)
                     
                     while currentI < n {
                         selectedIndices = [currentI]
-                        while currentJ > 0 && array[currentJ] < array[currentJ - 1] {
-                            guard !isPaused && !isCompleted else {
+                        while currentJ > 0 && helper.array[currentJ] < helper.array[currentJ - 1] {
+                            guard !helper.isPaused && !helper.isCompleted else {
                                 continuation.finish()
                                 return
                             }
                             try Task.checkCancellation()
                             
-                            calculationAmount += 1
-                            if needsAnimation {
-                                yieldUpdate(continuation: continuation,
-                                            selectedIndices: selectedIndices,
-                                            matchedIndices: [currentJ, currentJ - 1])
+                            helper.calculationAmount += 1
+                            if helper.needsAnimation {
+                                helper.yieldUpdate(continuation: continuation,
+                                                   selectedIndices: selectedIndices,
+                                                   matchedIndices: [currentJ, currentJ - 1])
                                 try await Task.sleep(nanoseconds: waitTimeForCalculation)
                             }
-                            array.swapAt(currentJ, currentJ - 1)
-                            if needsAnimation {
+                            helper.array.swapAt(currentJ, currentJ - 1)
+                            if helper.needsAnimation {
                                 try await Task.sleep(nanoseconds: waitTimeForCalculation)
                                 
-                                yieldUpdate(continuation: continuation,
-                                            selectedIndices: selectedIndices)
+                                helper.yieldUpdate(continuation: continuation,
+                                                   selectedIndices: selectedIndices)
                             }
                             currentJ -= 1
                         }
@@ -64,16 +60,16 @@ class InsertionSort: Sortable {
                         selectedIndices = [currentI]
                         
                         if currentI == n {
-                            completeSort(continuation: continuation)
+                            helper.completeSort(continuation: continuation)
                         } else {
-                            if needsAnimation {
-                                yieldUpdate(continuation: continuation, selectedIndices: selectedIndices)
+                            if helper.needsAnimation {
+                                helper.yieldUpdate(continuation: continuation, selectedIndices: selectedIndices)
                             }
                         }
                     }
                 } catch {
                     currentJ += 1
-                    isPaused = false
+                    helper.isPaused = false
                     continuation.finish()
                 }
             }
@@ -81,35 +77,35 @@ class InsertionSort: Sortable {
     }
     
     func stepForward() -> AsyncStream<SortUpdate?> {
-        isPaused = false
+        helper.isPaused = false
         
         return AsyncStream { continuation in
-            sortingTask = Task(priority: .userInitiated) {
+            helper.sortingTask = Task(priority: .userInitiated) {
                 do {
-                    guard !isCompleted else {
+                    guard !helper.isCompleted else {
                         continuation.finish()
                         return
                     }
-                    let n = array.count
+                    let n = helper.array.count
                     selectedIndices = [currentI]
                     
-                    while currentJ > 0 && array[currentJ] < array[currentJ - 1] {
-                        guard !isCompleted  && !isPaused else {
+                    while currentJ > 0 && helper.array[currentJ] < helper.array[currentJ - 1] {
+                        guard !helper.isCompleted  && !helper.isPaused else {
                             continuation.finish()
                             return
                         }
                         
-                        calculationAmount += 1
-                        if needsAnimation {
-                            yieldUpdate(continuation: continuation,
-                                        selectedIndices: selectedIndices,
-                                        matchedIndices: [currentJ, currentJ - 1])
+                        helper.calculationAmount += 1
+                        if helper.needsAnimation {
+                            helper.yieldUpdate(continuation: continuation,
+                                               selectedIndices: selectedIndices,
+                                               matchedIndices: [currentJ, currentJ - 1])
                             try await Task.sleep(nanoseconds: 200_000_000)
                         }
-                        array.swapAt(currentJ, currentJ - 1)
-                        if needsAnimation {
+                        helper.array.swapAt(currentJ, currentJ - 1)
+                        if helper.needsAnimation {
                             try await Task.sleep(nanoseconds: 200_000_000)
-                            yieldUpdate(continuation: continuation, selectedIndices: selectedIndices)
+                            helper.yieldUpdate(continuation: continuation, selectedIndices: selectedIndices)
                         }
                         currentJ -= 1
                     }
@@ -117,18 +113,18 @@ class InsertionSort: Sortable {
                     currentJ = currentI
                     
                     if currentI == n {
-                        completeSort(continuation: continuation)
+                        helper.completeSort(continuation: continuation)
                     } else {
-                        if needsAnimation {
-                            yieldUpdate(continuation: continuation, selectedIndices: selectedIndices
+                        if helper.needsAnimation {
+                            helper.yieldUpdate(continuation: continuation, selectedIndices: selectedIndices
                             )
                         }
                     }
-                    isPaused = false
+                    helper.isPaused = false
                     continuation.finish()
                 } catch {
                     currentJ += 1
-                    isPaused = false
+                    helper.isPaused = false
                     continuation.finish()
                 }
             }
@@ -136,30 +132,11 @@ class InsertionSort: Sortable {
     }
     
     func stop() {
-        isPaused = true
+        helper.isPaused = true
     }
     
-    private func yieldUpdate(continuation: AsyncStream<SortUpdate?>.Continuation,
-                             selectedIndices: [Int] = [],
-                             matchedIndices: [Int] = []) {
-        let update = SortUpdate(array: array,
-                                selectedIndices: selectedIndices,
-                                matchedIndices: matchedIndices,
-                                confirmedIndices: confirmedIndices,
-                                calculationAmount: calculationAmount,
-                                isCompleted: isCompleted)
-        continuation.yield(update)
-    }
-    
-    private func completeSort(continuation: AsyncStream<SortUpdate?>.Continuation) {
-        isCompleted = true
-        let update = SortUpdate(array: array,
-                                selectedIndices: [],
-                                matchedIndices: [],
-                                confirmedIndices: confirmedIndices,
-                                calculationAmount: calculationAmount,
-                                isCompleted: isCompleted)
-        continuation.yield(update)
-        continuation.finish()
+    func reset() {
+        helper.isPaused = true
+        helper.cancelSort()
     }
 }
