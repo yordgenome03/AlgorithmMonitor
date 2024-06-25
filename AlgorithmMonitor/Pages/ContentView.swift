@@ -35,6 +35,24 @@ struct ContentView: View {
                 } header: {
                     Text("Sort")
                 }
+                
+                Section {
+                    NavigationLink {
+                        SearchView<LinearSearch>()
+                            .navigationTitle("Linear Search")
+                    } label: {
+                        Text("Linear Search")
+                    }
+                    
+                    NavigationLink {
+                        SearchView<BinarySearch>()
+                            .navigationTitle("Binary Search")
+                    } label: {
+                        Text("Binary Search")
+                    }
+                } header: {
+                    Text("Search")
+                }
             }
             .navigationTitle("Algorithm List")
         }
