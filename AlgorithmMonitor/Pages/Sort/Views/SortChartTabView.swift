@@ -53,6 +53,8 @@ struct ChartTabView<T: Sortable>: View {
                     .matchedGeometryEffect(id: num, in: animation)
                 }
             }
+            .animation(.easeInOut, value: viewModel.selectedIndices)
+            .animation(.easeInOut, value: viewModel.matchedIndices)
             .animation(.easeInOut, value: viewModel.array)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -78,6 +80,8 @@ struct ChartTabView<T: Sortable>: View {
             }
             .padding(.vertical, 24)
         }
+        .animation(.easeInOut, value: viewModel.selectedIndices)
+        .animation(.easeInOut, value: viewModel.matchedIndices)
         .animation(.easeInOut, value: viewModel.array)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(16)

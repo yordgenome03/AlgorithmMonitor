@@ -32,6 +32,13 @@ struct ContentView: View {
                     } label: {
                         Text("Insertion Sort")
                     }
+                    
+                    NavigationLink {
+                        SortView<QuickSort>()
+                            .navigationTitle("Quick Sort")
+                    } label: {
+                        Text("Quick Sort")
+                    }
                 } header: {
                     Text("Sort")
                 }
