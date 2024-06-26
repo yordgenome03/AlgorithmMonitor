@@ -8,6 +8,12 @@ AlgorithmMonitor is a Swift-based application designed to visualize and monitor 
 - **Pause and Resume**: Pause the sorting process at any time and resume when ready.
 - Real-time Updates: Observe active indices and array states during the sorting process.
 
+![video2](https://github.com/yordgenome03/AlgorithmMonitor/assets/120723438/f6971a66-e738-4964-b4e8-c09c3c2a3ddb) ![video](https://github.com/yordgenome03/AlgorithmMonitor/assets/120723438/0b7f4dc3-b6ec-48da-a7a3-9f4b8c5522db)
+
+
+
+
+
 ## Getting Started
 ### Installation
 1. Clone the repository:
